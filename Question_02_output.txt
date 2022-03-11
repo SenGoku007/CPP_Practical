@@ -1,0 +1,30 @@
+Roll No     : 1
+Name        :Shubham Kumar
+Class       : 12
+Year        : 1
+Total Marks : 23
+
+Roll No     : 2
+Name        :Aditya Korang
+Class       : 12
+Year        : 2
+Total Marks : 25
+
+Roll No     : 3
+Name        :Kundan Mishra
+Class       : 12
+Year        : 2
+Total Marks : 21
+
+Roll No     : 4
+Name        :Kartikey Singh
+Class       : 12
+Year        : 3
+Total Marks : 24
+
+Roll No     : 5
+Name        :Dhruv Tara
+Class       : 12
+Year        : 2
+Total Marks : 20
+
