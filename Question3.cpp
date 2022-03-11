@@ -1,80 +1,113 @@
+#include <cmath>
 #include <bits/stdc++.h>
 using namespace std;
 
 class Triangle
 {
 private:
-    float side1;
-    float side2;
-    float side3;
-    float base;
-    float height;
+    float a, b, c, h;
 
 public:
-    Triangle() {}
+	
+	Triangle() {}
 
     Triangle(float a, float b, float c)
     {
-        side1 = a;
-        side2 = b;
-        side3 = c;
+        this->a = a;
+        this->b = b;
+        this->c = c;
     }
-
     Triangle(float b, float h)
     {
-        base = b;
-        height = h;
+        this->b = b;
+        this->h = h;
     }
+
 
     float area(float a, float b, float c)
     {
         float p = (a + b + c) / 2;
-        return sqrt(p * (p - a) * (p - b) * (p - c));
+        return sqrt(p * (p - a) * (p - b) * (p - c)); //heron's formula
     }
 
-    float area()
-    {
-        return area(side1, side2, side3);
-    }
-
+    // overloaded functions
     float area(float b, float h)
     {
-        return (b * h) / 2;
+        return (b * h) / 2;  
     }
-
-    auto operator=(const Triangle &triangle)
+    
+    float area(float s)
     {
-        side1 = triangle.side1;
-        side2 = triangle.side2;
-        side3 = triangle.side3;
+        return ((sqrt(3))*s*s)/4;  
     }
+    
 
+
+    // equality operator.
     friend bool operator==(const Triangle &t1, const Triangle &t2)
     {
-        return (t1.side1 == t2.side1 && t1.side2 == t2.side2 && t1.side3 == t2.side3);
+        return (t1.a == t2.a && t1.b == t2.b && t1.c == t2.c);
     }
+
 };
 
 int main()
 {
-    Triangle triangle_ABC(18, 30, 24);
-    cout << "Area of the tringle ABC : " << triangle_ABC.area(18, 30, 24) << endl;
-
-    Triangle triangle_PQR(24, 18);
-    cout << "Area of the tringle PQR : " << triangle_PQR.area(24, 18) << endl;
-    ;
-
-    Triangle triangle_MNO;
-    triangle_MNO = triangle_ABC;
-    cout << "Area of the tringle MNO : " << triangle_MNO.area() << endl;
-
-    if (triangle_ABC == triangle_MNO)
+	Triangle obj;
+	float a,b,c;
+	char x;
+	cout<<"Calculate area of a triangle \n a. Using base and height \n b. Using sides of triangle \n c. Equilateral Triangle \n\n";
+	cin>>x;
+    
+    if(x=='a'){
+    	cout<<"Enter the base and height of triangle \n";
+    	cin>>a>>b;
+    	cout<<obj.area(a,b);
+	}else if(x=='b'){
+		cout<<"Enter the sides of triangle \n";
+    	cin>>a>>b>>c;
+    	cout<<obj.area(a,b,c);
+	}else if(x=='c'){
+		cout<<"Enter the side of triangle \n";
+    	cin>>a;
+    	cout<<obj.area(a);
+	}else{
+		cout<<"Invalid option \n";
+	}
+	
+	cout<<"\n\n";
+	
+	float m,n,o;
+	cout<<"Check equality of two triangles. \n Enter the sides of first triangle: \n";
+	cin>>m>>n>>o;
+	
+	int arr2[]={m,n,o};
+	int z = sizeof(arr2) / sizeof(arr2[0]);
+    sort(arr2, arr2 + z);
+    m=arr2[1];
+    n=arr2[2];
+    o=arr2[0];
+    
+	Triangle t1(m,n,o);
+	
+	cout<<"Enter the sides of second triangle: \n";
+	cin>>m>>n>>o;
+	
+	int arr[]={m,n,o};
+	int y = sizeof(arr) / sizeof(arr[0]);
+    sort(arr, arr + y);
+    m=arr[1];
+    n=arr[2];
+    o=arr[0];
+    
+	Triangle t2(m,n,o);
+	if (t1 == t2)
     {
-        cout << "Triangles are equal.\n";
+        cout << "The triangles are equal.\n";
     }
     else
     {
-        cout << "Triangles are not equal.\n";
+        cout << "The triangles are not equal.\n";
     }
 
     return 0;
